@@ -12,6 +12,6 @@ function bukaLaporan() {
 
 function logout() {
     if (confirm("Yakin ingin logout?")) {
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     }
 }
