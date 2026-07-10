@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laporan Penggajian</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+.container{
+    width:90%;
+    margin:30px auto;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 5px 10px rgba(0,0,0,.2);
+}
+
+h2{
+    text-align:center;
+    color:#1976D2;
+    margin-bottom:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+table, th, td{
+    border:1px solid #ccc;
+}
+
+th{
+    background:#1976D2;
+    color:white;
+}
+
+th, td{
+    padding:10px;
+    text-align:center;
+}
+
+.total{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+    text-align:right;
+}
+
+button{
+    padding:10px 15px;
+    margin-top:20px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    color:white;
+}
+
+.cetak{
+    background:#1976D2;
+}
+
+.kembali{
+    background:#4CAF50;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Laporan Penggajian</h2>
+
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>NIK</th>
+<th>Nama</th>
+<th>Jabatan</th>
+<th>Total Gaji</th>
+</tr>
+</thead>
+
+<tbody id="tabelLaporan">
+
+</tbody>
+</table>
+
+<div class="total">
+    Total Penggajian :
+    <span id="totalSemua">Rp 0</span>
+</div>
+
+<button class="cetak" onclick="window.print()">
+Cetak Laporan
+</button>
+
+<button class="kembali" onclick="window.location.href='dashboard.html'">
+Kembali
+</button>
+
+</div>
+
+<script src="laporan.js"></script>
+
+</body>
+</html>
