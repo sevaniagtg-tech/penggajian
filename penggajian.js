@@ -1,74 +1,66 @@
-let dataPenggajian = [];
-let nomor = 1;
-
-function hitungGaji(){
+function hitungGaji() {
 
     let nik = document.getElementById("nik").value;
     let nama = document.getElementById("nama").value;
     let jabatan = document.getElementById("jabatan").value;
+    let gajiPokok = parseInt(document.getElementById("gajiPokok").value);
+    let tunjangan = parseInt(document.getElementById("tunjangan").value);
+    let potongan = parseInt(document.getElementById("potongan").value);
 
-    let gajiPokok = Number(document.getElementById("gajiPokok").value);
-    let tunjangan = Number(document.getElementById("tunjangan").value);
-    let potongan = Number(document.getElementById("potongan").value);
+    // Validasi input
+    if (nik === "" || nama === "" || jabatan === "" ||
+        isNaN(gajiPokok) || isNaN(tunjangan) || isNaN(potongan)) {
 
-    if(
-        nik=="" ||
-        nama=="" ||
-        jabatan==""
-    ){
-        alert("Lengkapi data terlebih dahulu!");
+        alert("Semua data harus diisi!");
         return;
     }
 
-    let total = gajiPokok + tunjangan - potongan;
+    // Menghitung total gaji
+    let totalGaji = gajiPokok + tunjangan - potongan;
+
+    // Menampilkan data pada tabel
+    let tabel = document.getElementById("tabelPenggajian");
+    let nomor = tabel.rows.length + 1;
+
+    tabel.innerHTML += `
+    <tr>
+        <td>${nomor}</td>
+        <td>${nik}</td>
+        <td>${nama}</td>
+        <td>${jabatan}</td>
+        <td>${gajiPokok}</td>
+        <td>${tunjangan}</td>
+        <td>${potongan}</td>
+        <td>${totalGaji}</td>
+    </tr>
+    `;
+
+    // Menyimpan data ke localStorage
+    let dataPenggajian =
+        JSON.parse(localStorage.getItem("penggajian")) || [];
 
     dataPenggajian.push({
-        nik,
-        nama,
-        jabatan,
-        gajiPokok,
-        tunjangan,
-        potongan,
-        total
+        nik: nik,
+        nama: nama,
+        jabatan: jabatan,
+        gajiPokok: gajiPokok,
+        tunjangan: tunjangan,
+        potongan: potongan,
+        totalGaji: totalGaji
     });
 
-    tampilData();
+    localStorage.setItem(
+        "penggajian",
+        JSON.stringify(dataPenggajian)
+    );
 
-    bersih();
-}
+    // Mengosongkan input
+    document.getElementById("nik").value = "";
+    document.getElementById("nama").value = "";
+    document.getElementById("jabatan").value = "";
+    document.getElementById("gajiPokok").value = "";
+    document.getElementById("tunjangan").value = "";
+    document.getElementById("potongan").value = "";
 
-function tampilData(){
-
-    let tabel = document.getElementById("tabelPenggajian");
-
-    tabel.innerHTML = "";
-
-    nomor = 1;
-
-    dataPenggajian.forEach(function(item){
-
-        tabel.innerHTML += `
-        <tr>
-            <td>${nomor++}</td>
-            <td>${item.nik}</td>
-            <td>${item.nama}</td>
-            <td>${item.jabatan}</td>
-            <td>Rp ${item.gajiPokok.toLocaleString("id-ID")}</td>
-            <td>Rp ${item.tunjangan.toLocaleString("id-ID")}</td>
-            <td>Rp ${item.potongan.toLocaleString("id-ID")}</td>
-            <td><b>Rp ${item.total.toLocaleString("id-ID")}</b></td>
-        </tr>
-        `;
-    });
-
-}
-
-function bersih(){
-
-    document.getElementById("nik").value="";
-    document.getElementById("nama").value="";
-    document.getElementById("jabatan").value="";
-    document.getElementById("gajiPokok").value="";
-    document.getElementById("tunjangan").value="";
-    document.getElementById("potongan").value="";
+    alert("Data berhasil disimpan!");
 }
