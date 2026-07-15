@@ -2,7 +2,6 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Laporan Penggajian</title>
 
 <style>
@@ -20,7 +19,7 @@ body{
 .container{
     width:90%;
     margin:30px auto;
-    background:#fff;
+    background:white;
     padding:20px;
     border-radius:10px;
     box-shadow:0 5px 10px rgba(0,0,0,.2);
@@ -35,10 +34,9 @@ h2{
 table{
     width:100%;
     border-collapse:collapse;
-    margin-top:20px;
 }
 
-table, th, td{
+table,th,td{
     border:1px solid #ccc;
 }
 
@@ -47,33 +45,19 @@ th{
     color:white;
 }
 
-th, td{
+th,td{
     padding:10px;
     text-align:center;
 }
 
-.total{
-    margin-top:20px;
-    font-size:18px;
-    font-weight:bold;
-    text-align:right;
-}
-
 button{
     padding:10px 15px;
-    margin-top:20px;
     border:none;
     border-radius:5px;
-    cursor:pointer;
     color:white;
-}
-
-.cetak{
-    background:#1976D2;
-}
-
-.kembali{
+    cursor:pointer;
     background:#4CAF50;
+    margin-top:20px;
 }
 </style>
 
@@ -91,25 +75,20 @@ button{
 <th>NIK</th>
 <th>Nama</th>
 <th>Jabatan</th>
+<th>Gaji Pokok</th>
+<th>Tunjangan</th>
+<th>Potongan</th>
 <th>Total Gaji</th>
 </tr>
 </thead>
 
-<tbody id="tabelLaporan">
+<tbody id="dataLaporan">
 
 </tbody>
+
 </table>
 
-<div class="total">
-    Total Penggajian :
-    <span id="totalSemua">Rp 0</span>
-</div>
-
-<button class="cetak" onclick="window.print()">
-Cetak Laporan
-</button>
-
-<button class="kembali" onclick="window.location.href='dashboard.html'">
+<button onclick="window.location.href='dashboard.html'">
 Kembali
 </button>
 
